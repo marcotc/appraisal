@@ -20,8 +20,8 @@ describe 'CLI', 'appraisal install' do
 
     run 'appraisal install'
 
-    expect(file 'gemfiles/1.0.0.gemfile.lock').to be_exists
-    expect(file 'gemfiles/1.1.0.gemfile.lock').to be_exists
+    expect(file 'gemfiles/1.0.0/Gemfile.lock').to be_exists
+    expect(file 'gemfiles/1.1.0/Gemfile.lock').to be_exists
   end
 
   it 'relativize directory in gemfile.lock' do
@@ -36,7 +36,9 @@ describe 'CLI', 'appraisal install' do
 
     run 'appraisal install'
 
-    expect(content_of("gemfiles/1.0.0.gemfile.lock")).
+    puts content_of("gemfiles/1.0.0/Gemfile.lock")
+
+    expect(content_of("gemfiles/1.0.0/Gemfile.lock")).
       not_to include(current_directory)
   end
 
@@ -53,7 +55,7 @@ describe 'CLI', 'appraisal install' do
       output = run 'appraisal install --jobs=2'
 
       expect(output).to include(
-        "bundle install --gemfile='#{file('gemfiles/1.0.0.gemfile')}' --jobs=2"
+        "bundle install --gemfile='#{file('gemfiles/1.0.0/Gemfile')}' --jobs=2"
       )
     end
 
@@ -61,13 +63,13 @@ describe 'CLI', 'appraisal install' do
       output = run 'appraisal install --jobs=0'
 
       expect(output).to include(
-        "bundle install --gemfile='#{file('gemfiles/1.0.0.gemfile')}'"
+        "bundle install --gemfile='#{file('gemfiles/1.0.0/Gemfile')}'"
       )
       expect(output).not_to include(
-        "bundle install --gemfile='#{file('gemfiles/1.0.0.gemfile')}' --jobs=0"
+        "bundle install --gemfile='#{file('gemfiles/1.0.0/Gemfile')}' --jobs=0"
       )
       expect(output).not_to include(
-        "bundle install --gemfile='#{file('gemfiles/1.0.0.gemfile')}' --jobs=1"
+        "bundle install --gemfile='#{file('gemfiles/1.0.0/Gemfile')}' --jobs=1"
       )
     end
   end
@@ -85,7 +87,7 @@ describe 'CLI', 'appraisal install' do
       output = run("appraisal install --full-index")
 
       expect(output).to include(
-        "bundle install --gemfile='#{file('gemfiles/1.0.0.gemfile')}' " \
+        "bundle install --gemfile='#{file('gemfiles/1.0.0/Gemfile')}' " \
         "--retry 1 --full-index true"
       )
     end
@@ -104,7 +106,7 @@ describe 'CLI', 'appraisal install' do
       output = run("appraisal install --path vendor/appraisal")
 
       expect(output).to include(
-        "bundle install --gemfile='#{file('gemfiles/1.0.0.gemfile')}' " \
+        "bundle install --gemfile='#{file('gemfiles/1.0.0/Gemfile')}' " \
         "--path #{file('vendor/appraisal')} --retry 1",
       )
     end

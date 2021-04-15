@@ -73,7 +73,7 @@ describe Appraisal::Gemfile do
           gem "two"
         end
 
-        path "../.." do
+        path "../../.." do
           gem "three"
         end
 
@@ -119,7 +119,7 @@ describe Appraisal::Gemfile do
           gem "two"
         end
 
-        path "../.." do
+        path "../../.." do
           gem "three"
         end
 
@@ -161,7 +161,7 @@ describe Appraisal::Gemfile do
 
     expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
       git "git://example.com/repo.git" do
-        path "../.." do
+        path "../../.." do
           gem "three"
         end
 
@@ -184,7 +184,7 @@ describe Appraisal::Gemfile do
     end
 
     expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
-      path "../../path" do
+      path "../../../path" do
         gem "one"
       end
     GEMFILE
@@ -206,7 +206,7 @@ describe Appraisal::Gemfile do
     end
 
     expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
-      path "../../path" do
+      path "../../../path" do
         git "git://example.com/repo.git" do
           gem "three"
         end
@@ -258,14 +258,14 @@ describe Appraisal::Gemfile do
         gemfile = Appraisal::Gemfile.new
         gemfile.gem "bacon", :path => "."
 
-        expect(gemfile.to_s).to eq %(gem "bacon", path: "../")
+        expect(gemfile.to_s).to eq %(gem "bacon", path: "../../")
       end
 
       it "handles relative path" do
         gemfile = Appraisal::Gemfile.new
         gemfile.gem "bacon", :path => "../bacon"
 
-        expect(gemfile.to_s).to eq %(gem "bacon", path: "../../bacon")
+        expect(gemfile.to_s).to eq %(gem "bacon", path: "../../../bacon")
       end
 
       it "handles absolute path" do
@@ -281,14 +281,14 @@ describe Appraisal::Gemfile do
         gemfile = Appraisal::Gemfile.new
         gemfile.gem "bacon", :git => "."
 
-        expect(gemfile.to_s).to eq %(gem "bacon", git: "../")
+        expect(gemfile.to_s).to eq %(gem "bacon", git: "../../")
       end
 
       it "handles relative git path" do
         gemfile = Appraisal::Gemfile.new
         gemfile.gem "bacon", :git => "../bacon"
 
-        expect(gemfile.to_s).to eq %(gem "bacon", git: "../../bacon")
+        expect(gemfile.to_s).to eq %(gem "bacon", git: "../../../bacon")
       end
 
       it "handles absolute git path" do
@@ -316,7 +316,7 @@ describe Appraisal::Gemfile do
         end
 
         expect(gemfile.to_s).to eq <<-gemfile.strip_heredoc.strip
-          path "../" do
+          path "../../" do
             gem "bacon"
           end
         gemfile
@@ -330,7 +330,7 @@ describe Appraisal::Gemfile do
         end
 
         expect(gemfile.to_s).to eq <<-gemfile.strip_heredoc.strip
-          path "../../bacon" do
+          path "../../../bacon" do
             gem "bacon"
           end
         gemfile
@@ -360,7 +360,7 @@ describe Appraisal::Gemfile do
         end
 
         expect(gemfile.to_s).to eq <<-gemfile.strip_heredoc.strip
-          git "../" do
+          git "../../" do
             gem "bacon"
           end
         gemfile
@@ -374,7 +374,7 @@ describe Appraisal::Gemfile do
         end
 
         expect(gemfile.to_s).to eq <<-gemfile.strip_heredoc.strip
-          git "../../bacon" do
+          git "../../../bacon" do
             gem "bacon"
           end
         gemfile
@@ -414,7 +414,7 @@ describe Appraisal::Gemfile do
         gemfile = Appraisal::Gemfile.new
         gemfile.gemspec :path => "."
 
-        expect(gemfile.to_s).to eq %(gemspec path: "../")
+        expect(gemfile.to_s).to eq %(gemspec path: "../../")
       end
     end
   end
@@ -427,7 +427,7 @@ describe Appraisal::Gemfile do
       gemfile.git_source(:custom_source) { |repo| "path/#{repo}" }
       gemfile.gem "bacon", :custom_source => "bacon_pancake"
 
-      expect(gemfile.to_s).to eq %(gem "bacon", git: "../path/bacon_pancake")
+      expect(gemfile.to_s).to eq %(gem "bacon", git: "../../path/bacon_pancake")
     end
   end
 end

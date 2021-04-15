@@ -5,17 +5,17 @@ require 'tempfile'
 describe Appraisal::Appraisal do
   it "converts spaces to underscores in the gemfile path" do
     appraisal = Appraisal::Appraisal.new("one two", "Gemfile")
-    expect(appraisal.gemfile_path).to match(/one_two\.gemfile$/)
+    expect(appraisal.gemfile_path).to match(/one_two\/Gemfile$/)
   end
 
   it "converts  punctuation to underscores in the gemfile path" do
     appraisal = Appraisal::Appraisal.new("o&ne!", "Gemfile")
-    expect(appraisal.gemfile_path).to match(/o_ne_\.gemfile$/)
+    expect(appraisal.gemfile_path).to match(/o_ne_\/Gemfile$/)
   end
 
   it "keeps dots in the gemfile path" do
     appraisal = Appraisal::Appraisal.new("rails3.0", "Gemfile")
-    expect(appraisal.gemfile_path).to match(/rails3\.0\.gemfile$/)
+    expect(appraisal.gemfile_path).to match(/rails3\.0\/Gemfile$/)
   end
 
   it "generates a gemfile with a newline at the end of file" do

@@ -22,8 +22,8 @@ describe "Travis CI integration" do
       expect(output).to include <<-stdout.strip_heredoc
         # Put this in your .travis.yml
         gemfile:
-          - gemfiles/1.0.0.gemfile
-          - gemfiles/1.1.0.gemfile
+          - gemfiles/1.0.0/Gemfile
+          - gemfiles/1.1.0/Gemfile
       stdout
     end
   end
@@ -45,8 +45,8 @@ describe "Travis CI integration" do
       before do
         write_file ".travis.yml", <<-travis_yml
           gemfile:
-            - gemfiles/1.0.0.gemfile
-            - gemfiles/1.0.1.gemfile
+            - gemfiles/1.0.0/Gemfile
+            - gemfiles/1.0.1/Gemfile
         travis_yml
       end
 
@@ -61,8 +61,8 @@ describe "Travis CI integration" do
       before do
         write_file ".travis.yml", <<-travis_yml
           gemfile:
-            - gemfiles/1.0.0.gemfile
-            - gemfiles/1.1.0.gemfile
+            - gemfiles/1.0.0/Gemfile
+            - gemfiles/1.1.0/Gemfile
         travis_yml
       end
 

@@ -85,15 +85,13 @@ module Appraisal
     end
 
     def gemfile_path
-      unless gemfile_root.exist?
-        gemfile_root.mkdir
+      gemfile_root.join(clean_name, gemfile_name).to_s.tap do |path|
+        FileUtils.mkdir_p(File.dirname(path))
       end
-
-      gemfile_root.join(gemfile_name).to_s
     end
 
     def relative_gemfile_path
-      File.join("gemfiles", gemfile_name)
+      File.join("gemfiles", clean_name, gemfile_name)
     end
 
     def relativize
@@ -131,7 +129,7 @@ module Appraisal
     end
 
     def gemfile_name
-      "#{clean_name}.gemfile"
+      "Gemfile"
     end
 
     def lockfile_path

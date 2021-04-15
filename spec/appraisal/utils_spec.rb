@@ -34,11 +34,11 @@ describe Appraisal::Utils do
 
   describe ".prefix_path" do
     it "prepends two dots in front of relative path" do
-      expect(Appraisal::Utils.prefix_path("test")).to eq "../test"
+      expect(Appraisal::Utils.prefix_path("test")).to eq "../../test"
     end
 
     it "replaces single dot with two dots" do
-      expect(Appraisal::Utils.prefix_path(".")).to eq "../"
+      expect(Appraisal::Utils.prefix_path(".")).to eq "../../"
     end
 
     it "ignores absolute path" do
@@ -47,7 +47,7 @@ describe Appraisal::Utils do
 
     it "strips out './' from path"  do
       expect(Appraisal::Utils.prefix_path("./tmp/./appraisal././")).
-        to eq "../tmp/appraisal./"
+        to eq "../../tmp/appraisal./"
     end
 
     it "does not prefix Git uri" do

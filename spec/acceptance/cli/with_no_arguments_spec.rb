@@ -10,7 +10,7 @@ describe 'CLI appraisal (with no arguments)' do
 
     run 'appraisal'
 
-    expect(file 'gemfiles/1.0.0.gemfile').to be_exists
-    expect(file 'gemfiles/1.0.0.gemfile.lock').to be_exists
+    expect(file 'gemfiles/1.0.0/Gemfile').to be_exists
+    expect(file 'gemfiles/1.0.0/Gemfile.lock').to be_exists
   end
 end

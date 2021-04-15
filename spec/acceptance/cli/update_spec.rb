@@ -27,9 +27,9 @@ describe 'CLI', 'appraisal update' do
     it 'updates all the gems' do
       output = run 'appraisal update'
 
-      expect(output).to include("gemfiles/dummy.gemfile bundle update")
-      expect(content_of 'gemfiles/dummy.gemfile.lock').to include 'dummy (1.0.1)'
-      expect(content_of 'gemfiles/dummy.gemfile.lock').to include 'dummy2 (1.0.1)'
+      expect(output).to include("gemfiles/dummy/Gemfile bundle update")
+      expect(content_of 'gemfiles/dummy/Gemfile.lock').to include 'dummy (1.0.1)'
+      expect(content_of 'gemfiles/dummy/Gemfile.lock').to include 'dummy2 (1.0.1)'
     end
   end
 
@@ -37,8 +37,8 @@ describe 'CLI', 'appraisal update' do
     it 'only updates specified gems' do
       run 'appraisal update dummy'
 
-      expect(content_of 'gemfiles/dummy.gemfile.lock').to include 'dummy (1.0.1)'
-      expect(content_of 'gemfiles/dummy.gemfile.lock').to include 'dummy2 (1.0.0)'
+      expect(content_of 'gemfiles/dummy/Gemfile.lock').to include 'dummy (1.0.1)'
+      expect(content_of 'gemfiles/dummy/Gemfile.lock').to include 'dummy2 (1.0.0)'
     end
   end
 end

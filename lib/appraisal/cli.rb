@@ -78,7 +78,7 @@ module Appraisal
 
     desc 'clean', 'Remove all generated gemfiles and lockfiles from gemfiles folder'
     def clean
-      FileUtils.rm_f Dir['gemfiles/*.{gemfile,gemfile.lock}']
+      FileUtils.rm_f Dir['gemfiles/**/{Gemfile,Gemfile.lock}']
     end
 
     desc 'update [LIST_OF_GEMS]', 'Remove all generated gemfiles and lockfiles, resolve, and install dependencies again'
