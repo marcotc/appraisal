@@ -1,3 +1,3 @@
 module Appraisal
-  VERSION = "2.4.0.dirbased".freeze
+  VERSION = "2.4.0.dirpaths".freeze
 end
